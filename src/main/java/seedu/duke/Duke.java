@@ -53,7 +53,7 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         String filename = in.nextLine();
 
-        System.out.println("__________________________________________________");
+        System.out.println("____________________________________________________________________________________________________");
 
         new Duke(filename).run();
     }

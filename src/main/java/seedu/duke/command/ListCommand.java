@@ -15,7 +15,7 @@ public class ListCommand extends Command {
         } else {
             System.out.println("    Here are the book(s) in the library:");
             for (int i = 0; i < bookList.size(); i++) {
-                System.out.println("      " + (i + 1) + "." + (bookList.get(i)));
+                System.out.println("      " + bookList.get(i));
             }
         }
     }
