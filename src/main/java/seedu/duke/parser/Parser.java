@@ -49,9 +49,9 @@ public class Parser {
     public static Command parseUserInput(String userInput) throws DukeException {
         String[] firstWord = userInput.split(" ", 2);
 
-        if (firstWord[0] == "bye") {
+        if (firstWord[0].equals("bye")) {
             return new ExitCommand();
-        } else if (firstWord[0] == "list") {
+        } else if (firstWord[0].equals("list")) {
             return new ListCommand();
         } else {
             throw new DukeException("\u2639 " + "OOPS!!! I'm sorry, " +

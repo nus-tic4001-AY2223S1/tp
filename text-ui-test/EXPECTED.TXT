@@ -8,3 +8,7 @@ Hello from
 
 
     There are no books available in the library at the moment.
+____________________________________________________________________________________________________
+? OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________________________________________________
+    Bye. Hope to see you again soon!
