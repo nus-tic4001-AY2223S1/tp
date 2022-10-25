@@ -9,7 +9,8 @@ public class Book {
     protected int onShelf;
     protected String category;
 
-    public Book(String title, String author, String edition, String published, int totalCopy, int onShelf, String category) {
+    public Book(String title, String author, String edition,
+                String published, int totalCopy, int onShelf, String category) {
         this.title = title;
         this.author = author;
         this.edition = edition;

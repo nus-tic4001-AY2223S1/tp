@@ -49,13 +49,13 @@ public class Parser {
     public static Command parseUserInput(String userInput) throws DukeException {
         String[] firstWord = userInput.split(" ", 2);
 
-        switch (firstWord[0]) {
-            case "bye":
-                return new ExitCommand();
-            case "list":
-                return new ListCommand();
-            default:
-                throw new DukeException("\u2639 " + "OOPS!!! I'm sorry, but I don't know what that means :-(");
+        if (firstWord[0] == "bye") {
+            return new ExitCommand();
+        } else if (firstWord[0] == "list") {
+            return new ListCommand();
+        } else {
+            throw new DukeException("\u2639 " + "OOPS!!! I'm sorry, " +
+                    "but I don't know what that means :-(");
         }
     }
 }

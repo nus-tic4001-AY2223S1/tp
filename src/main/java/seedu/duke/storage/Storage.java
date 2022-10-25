@@ -20,7 +20,11 @@ public class Storage {
 
         try {
             File dir = new File(String.valueOf(directory));
-            if (!dir.exists()) {dir.mkdirs();}
+
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
             Files.createFile(pathFile);
         } catch (IOException e) {
             System.out.println("    Your chosen filename exists at " +
