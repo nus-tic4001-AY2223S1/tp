@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public abstract class Command {
     public static boolean isExit = false;
 
-    public abstract void execute(String userInput, ArrayList<Book> bookList, Storage storage, File file) throws DukeException;
+    public abstract void execute(String userInput, ArrayList<Book> bookList,
+                                 Storage storage, File file) throws DukeException;
 
     public abstract boolean setIsExit();
 }

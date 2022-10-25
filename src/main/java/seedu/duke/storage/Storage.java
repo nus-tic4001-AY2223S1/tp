@@ -2,7 +2,8 @@ package seedu.duke.storage;
 
 import seedu.duke.book.Book;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -19,10 +20,12 @@ public class Storage {
 
         try {
             File dir = new File(String.valueOf(directory));
-            if (!dir.exists()) dir.mkdirs();
+            if (!dir.exists()) {dir.mkdirs();}
             Files.createFile(pathFile);
         } catch (IOException e) {
-            System.out.println("    Your chosen filename exists at " + e.getMessage() + ".\n    I will proceed to use this as the working file and update accordingly.\n");
+            System.out.println("    Your chosen filename exists at " +
+                    e.getMessage() + ".\n    I will proceed to use this as the " +
+                    "working file and update accordingly.\n");
         }
     }
 
@@ -39,42 +42,4 @@ public class Storage {
 
         myBookList.add(new Book(title, author, edition, published, totalCopy, onShelf, category));
     }
-
-//    public void updateTaskFile(ArrayList<Book> taskList, File file) throws DukeException {
-//        try {
-//            PrintWriter pw = new PrintWriter(file);
-//
-//            pw.print("");
-//            pw.close();
-//
-//            for (int i = 0; i < taskList.size(); i++) {
-//                saveTaskToFile(taskList.get(i), file);
-//            }
-//        } catch (IOException e) {
-//            throw new DukeException("Something went wrong: " + e.getMessage());
-//        }
-//    }
-//
-//    public void saveTaskToFile(Task task, File file) throws DukeException {
-//        try {
-//            File f = file;
-//            Scanner s = new Scanner(f);
-//            FileWriter fw = new FileWriter(file, true);
-//            boolean taskFound = false;
-//
-//            while (s.hasNext()) {
-//                if (s.nextLine().equals(task.toString())) {
-//                    taskFound = true;
-//                    break;
-//                }
-//            }
-//
-//            if (!taskFound) {
-//                fw.write(task + "\n");
-//                fw.close();
-//            }
-//        } catch (IOException e) {
-//            throw new DukeException("Something went wrong: " + e.getMessage());
-//        }
-//    }
 }

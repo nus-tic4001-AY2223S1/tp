@@ -21,8 +21,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return " Title: " + title + "\n" + "       Author: " + author + "\n" + "       Edition: " + edition + "\n" + "       Published: " +
-                published + "\n" + "       On-shelf: " + onShelf + " of " + totalCopy + "\n" + "       Category: " + category + "\n";
+        return " Title: " + title + "\n" + "       Author: " + author + "\n" +
+                "       Edition: " + edition + "\n" + "       Published: " +
+                published + "\n" + "       On-shelf: " + onShelf + " of " +
+                totalCopy + "\n" + "       Category: " + category + "\n";
     }
 }
 

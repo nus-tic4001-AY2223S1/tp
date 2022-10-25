@@ -1,7 +1,7 @@
 package seedu.duke.parser;
 
 import seedu.duke.book.Book;
-import seedu.duke.command.*;
+import seedu.duke.command.Command;
 import seedu.duke.command.ExitCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.exception.DukeException;
@@ -36,7 +36,8 @@ public class Parser {
             if (isEmpty) {
                 storage.loadBookFromFile(input);
 
-                System.out.println("    There are " + bookList.size() + " different book(s) in the library at the moment.\n");
+                System.out.println("    There are " + bookList.size() +
+                        " different book(s) in the library at the moment.\n");
             } else {
                 System.out.println("    There are no books available in the library at the moment.\n");
             }
@@ -49,10 +50,12 @@ public class Parser {
         String[] firstWord = userInput.split(" ", 2);
 
         switch (firstWord[0]) {
-            case "bye": return new ExitCommand();
-            case "list": return new ListCommand();
-
-            default: throw new DukeException("\u2639 " + "OOPS!!! I'm sorry, but I don't know what that means :-(");
+            case "bye":
+                return new ExitCommand();
+            case "list":
+                return new ListCommand();
+            default:
+                throw new DukeException("\u2639 " + "OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 }

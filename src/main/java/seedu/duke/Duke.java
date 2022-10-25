@@ -1,20 +1,20 @@
 package seedu.duke;
 
-import seedu.duke.book.*;
+import seedu.duke.book.Book;
 import seedu.duke.command.Command;
 import seedu.duke.exception.DukeException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.UI;
 
-import java.io.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     private static File file;
     private UI ui;
-    private static ArrayList<Book> bookList;
+    private ArrayList<Book> bookList;
     private Storage storage;
 
     public Duke(String filename) {
@@ -53,7 +53,8 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         String filename = in.nextLine();
 
-        System.out.println("____________________________________________________________________________________________________");
+        System.out.println("__________________________________________________________" +
+                "__________________________________________");
 
         new Duke(filename).run();
     }
