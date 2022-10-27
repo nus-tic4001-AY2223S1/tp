@@ -1,9 +1,7 @@
 package seedu.duke.parser;
 
 import seedu.duke.book.Book;
-import seedu.duke.command.Command;
-import seedu.duke.command.ExitCommand;
-import seedu.duke.command.ListCommand;
+import seedu.duke.command.*;
 import seedu.duke.exception.DukeException;
 import seedu.duke.storage.Storage;
 
@@ -49,10 +47,21 @@ public class Parser {
     public static Command parseUserInput(String userInput) throws DukeException {
         String[] firstWord = userInput.split(" ", 2);
 
-        if (firstWord[0].equals("bye")) {
+        int pos = userInput.indexOf(" ");
+        int pos1 = userInput.indexOf(" ", pos+1);
+        String secondWord = userInput.substring(pos+1, pos1);
+
+
+        if (firstWord[0].equalsIgnoreCase("bye")) {
             return new ExitCommand();
-        } else if (firstWord[0].equals("list")) {
-            return new ListCommand();
+        } else if (firstWord[0].equalsIgnoreCase("list")) {
+            if (secondWord.equalsIgnoreCase("user")) {
+                return new ListUserCommand();
+            } else return new ListCommand();
+        } else if (firstWord[0].equalsIgnoreCase("borrow")) {
+            return new BorrowCommand();
+        } else if (firstWord[0].equalsIgnoreCase("return")) {
+            return new ReturnCommand();
         } else {
             throw new DukeException("\u2639 " + "OOPS!!! I'm sorry, " +
                     "but I don't know what that means :-(");

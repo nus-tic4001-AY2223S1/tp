@@ -7,17 +7,21 @@ import seedu.duke.storage.Storage;
 import java.io.File;
 import java.util.ArrayList;
 
-public class ListCommand extends Command {
+public class BorrowCommand extends Command {
     @Override
     public void execute(String userInput, ArrayList<Book> bookList, Storage storage, File file) throws DukeException {
         if (bookList.isEmpty()) {
             throw new DukeException("    There are no books available in the library at the moment.");
-        } else {
-            System.out.println("    Here are the book(s) in the library:");
+        }
+        int n = userInput.indexOf('/');
+        String marker = userInput.substring(n, n+2).trim();
+
+        if (marker.equals("t")) {
+            String title = userInput.substring(n+3);
             for (int i = 0; i < bookList.size(); i++) {
                 Book book = bookList.get(i);
-                if (book.onShelf == 1) {
-                    System.out.println("      " + bookList.get(i));
+                if (book.title.equalsIgnoreCase(title)) {
+                    bookList.get(i).onShelf = 0;
                 }
             }
         }
