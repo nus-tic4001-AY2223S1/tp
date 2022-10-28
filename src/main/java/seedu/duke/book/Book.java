@@ -1,13 +1,13 @@
 package seedu.duke.book;
 
 public class Book {
-    protected String title;
-    protected String author;
-    protected String edition;
-    protected String published;
-    protected int totalCopy;
-    protected int onShelf;
-    protected String category;
+    public String title;
+    public String author;
+    public String edition;
+    public String published;
+    public int totalCopy;
+    public int onShelf;
+    public String category;
 
     public Book(String title, String author, String edition,
                 String published, int totalCopy, int onShelf, String category) {
