@@ -1,21 +1,61 @@
 package seedu.duke;
 
+import seedu.duke.book.Book;
+import seedu.duke.command.Command;
+import seedu.duke.exception.DukeException;
+import seedu.duke.parser.Parser;
+import seedu.duke.storage.Storage;
+import seedu.duke.ui.UI;
+
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
+    private static File file;
+    private UI ui;
+    private ArrayList<Book> bookList;
+    private Storage storage;
+
+    public Duke(String filename) {
+        String home = System.getProperty("user.home");
+        java.nio.file.Path directory = java.nio.file.Paths.get(home, "Duke");
+        java.nio.file.Path pathFile = java.nio.file.Paths.get(home, "Duke", filename + ".txt");
+        file = pathFile.toFile();
+
+        ui = new UI();
+        ui.showWelcome();
+
+        bookList = new ArrayList<>();
+        storage = new Storage(directory, pathFile, bookList);
+
+        Parser.parseBookFromFile(pathFile, storage, bookList);
+    }
+
+    public void run() {
+        while (!Command.isExit) {
+            try {
+                String userInput = ui.readUserInput();
+                ui.showLine();
+                Command c = Parser.parseUserInput(userInput);
+                c.execute(userInput, bookList, storage, file);
+                c.setIsExit();
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+        System.out.println("\nTo begin, enter your filename: \n");
 
         Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
+        String filename = in.nextLine();
+
+        System.out.println("__________________________________________________________" +
+                "__________________________________________");
+
+        new Duke(filename).run();
     }
 }
