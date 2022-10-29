@@ -9,8 +9,7 @@ public class UI {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println();
+        System.out.println("\nHello from\n" + logo);
     }
 
     public String readUserInput() {

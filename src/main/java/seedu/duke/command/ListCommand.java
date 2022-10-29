@@ -15,10 +15,7 @@ public class ListCommand extends Command {
         } else {
             System.out.println("    Here are the book(s) in the library:");
             for (int i = 0; i < bookList.size(); i++) {
-                Book book = bookList.get(i);
-                if (book.onShelf == 1) {
-                    System.out.println("      " + bookList.get(i));
-                }
+                System.out.println("\n      " + bookList.get(i));
             }
         }
     }

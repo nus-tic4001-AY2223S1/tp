@@ -12,24 +12,33 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    private static File file;
+    private static File libraryFile;
     private UI ui;
     private ArrayList<Book> bookList;
     private Storage storage;
 
-    public Duke(String filename) {
-        String home = System.getProperty("user.home");
-        java.nio.file.Path directory = java.nio.file.Paths.get(home, "Duke");
-        java.nio.file.Path pathFile = java.nio.file.Paths.get(home, "Duke", filename + ".txt");
-        file = pathFile.toFile();
+    public Duke(String user) {
+        String home = System.getProperty("user.dir");
+        java.nio.file.Path directory = java.nio.file.Paths.get(home,
+                "/src/main/java/seedu/duke/");
+        java.nio.file.Path pathLibraryFile = java.nio.file.Paths.get(home,
+                "/src/main/java/seedu/duke/", "library.txt");
+        java.nio.file.Path pathUserFile = java.nio.file.Paths.get(home,
+                "/src/main/java/seedu/duke/", user + ".txt");
+        libraryFile = pathLibraryFile.toFile();
+
+        if (!libraryFile.exists()) {
+            System.out.println("\n    The library file does not exists! Please check the file " +
+                    "and the path directory.\n");
+            System.exit(0);
+        }
 
         ui = new UI();
         ui.showWelcome();
 
         bookList = new ArrayList<>();
-        storage = new Storage(directory, pathFile, bookList);
-
-        Parser.parseBookFromFile(pathFile, storage, bookList);
+        storage = new Storage(directory, pathUserFile, bookList);
+        storage.loadFromFile(pathLibraryFile, bookList);
     }
 
     public void run() {
@@ -37,8 +46,8 @@ public class Duke {
             try {
                 String userInput = ui.readUserInput();
                 ui.showLine();
-                Command c = Parser.parseUserInput(userInput);
-                c.execute(userInput, bookList, storage, file);
+                Command c = Parser.parseUserInput(userInput.trim());
+                c.execute(userInput, bookList, storage, libraryFile);
                 c.setIsExit();
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
@@ -48,14 +57,14 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        System.out.println("\nTo begin, enter your filename: \n");
+        System.out.println("\nEnter your username to begin: \n");
 
         Scanner in = new Scanner(System.in);
-        String filename = in.nextLine();
+        String user = in.nextLine();
 
         System.out.println("__________________________________________________________" +
                 "__________________________________________");
 
-        new Duke(filename).run();
+        new Duke(user).run();
     }
 }

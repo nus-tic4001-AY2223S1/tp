@@ -16,15 +16,15 @@ public class BorrowCommand extends Command {
         int n = userInput.indexOf('/');
         String marker = userInput.substring(n, n+2).trim();
 
-        if (marker.equals("t")) {
-            String title = userInput.substring(n+3);
-            for (int i = 0; i < bookList.size(); i++) {
-                Book book = bookList.get(i);
-                if (book.title.equalsIgnoreCase(title)) {
-                    bookList.get(i).onShelf = 0;
-                }
-            }
-        }
+//        if (marker.equals("t")) {
+//            String title = userInput.substring(n+3);
+//            for (int i = 0; i < bookList.size(); i++) {
+//                Book book = bookList.get(i);
+//                if (book.title.equalsIgnoreCase(title)) {
+//                    bookList.get(i).onShelf = 0;
+//                }
+//            }
+//        }
     }
 
     @Override
