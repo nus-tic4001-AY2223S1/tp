@@ -9,18 +9,28 @@ import java.util.ArrayList;
 
 public class ListUserCommand extends Command {
     @Override
-    public void execute(String userInput, ArrayList<Book> bookList, Storage storage, File file) throws DukeException {
-//        if (bookList.isEmpty()) {
-//            throw new DukeException("    There are no books available in your inventory at the moment.");
-//        } else {
-//            System.out.println("    Here are the book(s) in the inventory:");
-//            for (int i = 0; i < bookList.size(); i++) {
-//                Book book = bookList.get(i);
-//                if (book.onShelf == 0) {
-//                    System.out.println("      " + bookList.get(i));
-//                }
-//            }
-//        }
+    public void execute(String user, String userInput,
+                        ArrayList<Book> bookList, Storage storage,
+                        File file) throws DukeException {
+        if (didUserBorrow(user, bookList)) {
+            System.out.println("Here are the books that you borrowed:");
+            for (int i = 0; i < bookList.size(); i++) {
+                if (user.equals(bookList.get(i).getBorrower())) {
+                    System.out.println("\n" + bookList.get(i));
+                }
+            }
+        } else {
+            throw new DukeException("Your account is clear. No books were borrowed.");
+        }
+    }
+
+    public boolean didUserBorrow (String user, ArrayList<Book> bookList) {
+        for (int i = 0; i < bookList.size(); i++) {
+            if (user.equals(bookList.get(i).getBorrower())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

@@ -9,22 +9,43 @@ import java.util.ArrayList;
 
 public class BorrowCommand extends Command {
     @Override
-    public void execute(String userInput, ArrayList<Book> bookList, Storage storage, File file) throws DukeException {
-        if (bookList.isEmpty()) {
-            throw new DukeException("    There are no books available in the library at the moment.");
-        }
-        int n = userInput.indexOf('/');
-        String marker = userInput.substring(n, n+2).trim();
+    public void execute(String user, String userInput,
+                        ArrayList<Book> bookList, Storage storage,
+                        File file) throws DukeException {
+        String title = userInput.substring(8).trim();
+        int bookIndex = 0;
 
-//        if (marker.equals("t")) {
-//            String title = userInput.substring(n+3);
-//            for (int i = 0; i < bookList.size(); i++) {
-//                Book book = bookList.get(i);
-//                if (book.title.equalsIgnoreCase(title)) {
-//                    bookList.get(i).onShelf = 0;
-//                }
-//            }
-//        }
+        if (isAvailable(bookList, title)) {
+            for (int i = 0; i < bookList.size(); i++) {
+                if (title.equalsIgnoreCase(bookList.get(i).getTitle())) {
+                    bookIndex = i;
+                }
+            }
+
+            if (bookList.get(bookIndex).isOnShelf()) {
+                bookList.get(bookIndex).setOnShelf(false);
+                bookList.get(bookIndex).setBorrower(user);
+                storage.updateLibrary(bookList, file);
+
+                System.out.println("The book has been added to your account.");
+            } else {
+                throw new DukeException("The book was borrowed and has not been returned yet.");
+            }
+
+        } else {
+            throw new DukeException("That book is not available in the library yet. " +
+                    "You may check what's in the \nlibrary using the list, list /l, " +
+                    "list /lib or list /library command.");
+        }
+    }
+
+    public boolean isAvailable (ArrayList<Book> bookList, String title) {
+        for (int i = 0; i < bookList.size(); i++) {
+            if (title.equalsIgnoreCase(bookList.get(i).getTitle())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

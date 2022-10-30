@@ -9,13 +9,16 @@ import java.util.ArrayList;
 
 public class ListCommand extends Command {
     @Override
-    public void execute(String userInput, ArrayList<Book> bookList, Storage storage, File file) throws DukeException {
+    public void execute(String user, String userInput,
+                        ArrayList<Book> bookList, Storage storage,
+                        File file) throws DukeException {
         if (bookList.isEmpty()) {
-            throw new DukeException("    There are no books available in the library at the moment.");
+            throw new DukeException("There are no books available " +
+                    "in the library at the moment.");
         } else {
-            System.out.println("    Here are the book(s) in the library:");
+            System.out.println("Here are the book(s) in the library:");
             for (int i = 0; i < bookList.size(); i++) {
-                System.out.println("\n      " + bookList.get(i));
+                System.out.println("\n" + bookList.get(i));
             }
         }
     }

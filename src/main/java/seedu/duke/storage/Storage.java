@@ -1,11 +1,13 @@
 package seedu.duke.storage;
 
 import seedu.duke.book.Book;
+import seedu.duke.exception.DukeException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,25 +15,11 @@ import java.util.Scanner;
 public class Storage {
     private ArrayList<Book> bookList;
 
-    public Storage(Path directory, Path pathUserFile, ArrayList<Book> bookList) {
+    public Storage(ArrayList<Book> bookList) {
         this.bookList = bookList;
-
-        try {
-            File dir = new File(String.valueOf(directory));
-
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-
-            Files.createFile(pathUserFile);
-        } catch (IOException e) {
-            System.out.println("    Your record exists at " +
-                    e.getMessage() + ".\n\n    I will proceed to update" +
-                    " your record accordingly.\n");
-        }
     }
 
-    public void loadFromFile(Path pathFile, ArrayList<Book> bookList) {
+    public void loadFromLibrary(Path pathFile, ArrayList<Book> bookList) {
         try {
             File f = pathFile.toFile();
             Scanner s = new Scanner(f);
@@ -53,10 +41,10 @@ public class Storage {
             if (isEmpty) {
                 addBook(input);
 
-                System.out.println("    There are " + bookList.size() +
+                System.out.println("There are " + bookList.size() +
                         " different book(s) in the library at the moment.\n");
             } else {
-                System.out.println("    There are no books available in the library at the moment.\n");
+                System.out.println("There are no books available in the library at the moment.\n");
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + e.getMessage());
@@ -75,5 +63,43 @@ public class Storage {
         String borrower = splitString[6].substring(10);
 
         bookList.add(new Book(title, author, edition, published, category, onShelf, borrower));
+    }
+
+    public void updateLibrary(ArrayList<Book> bookList, File file) throws DukeException {
+        try {
+            PrintWriter pw = new PrintWriter(file);
+
+            pw.print("");
+            pw.close();
+
+            for (int i = 0; i < bookList.size(); i++) {
+                saveBookToLibrary(bookList.get(i), file);
+            }
+        } catch (IOException e) {
+            throw new DukeException("Something went wrong: " + e.getMessage());
+        }
+    }
+
+    public void saveBookToLibrary(Book book, File file) throws DukeException {
+        try {
+            File f = file;
+            Scanner s = new Scanner(f);
+            FileWriter fw = new FileWriter(file, true);
+            boolean taskFound = false;
+
+            while (s.hasNext()) {
+                if (s.nextLine().equals(book.toString())) {
+                    taskFound = true;
+                    break;
+                }
+            }
+
+            if (!taskFound) {
+                fw.write(book + "\n\n");
+                fw.close();
+            }
+        } catch (IOException e) {
+            throw new DukeException("Something went wrong: " + e.getMessage());
+        }
     }
 }

@@ -9,22 +9,44 @@ import java.util.ArrayList;
 
 public class ReturnCommand extends Command {
     @Override
-    public void execute(String userInput, ArrayList<Book> bookList, Storage storage, File file) throws DukeException {
-        if (bookList.isEmpty()) {
-            throw new DukeException("    There are no books available in the library at the moment.");
-        }
-        int n = userInput.indexOf('/');
-        String marker = userInput.substring(n, n+2).trim();
+    public void execute(String user, String userInput,
+                        ArrayList<Book> bookList, Storage storage,
+                        File file) throws DukeException {
+        String title = userInput.substring(8).trim();
+        int bookIndex = 0;
 
-//        if (marker.equals("t")) {
-//            String title = userInput.substring(n+3);
-//            for (int i = 0; i < bookList.size(); i++) {
-//                Book book = bookList.get(i);
-//                if (book.title.equalsIgnoreCase(title)) {
-//                    bookList.get(i).onShelf = 1;
-//                }
-//            }
-//        }
+        if (isAvailable(bookList, title)) {
+            for (int i = 0; i < bookList.size(); i++) {
+                if (title.equalsIgnoreCase(bookList.get(i).getTitle())) {
+                    bookIndex = i;
+                }
+            }
+
+            if (!bookList.get(bookIndex).isOnShelf()) {
+                bookList.get(bookIndex).setOnShelf(true);
+                bookList.get(bookIndex).setBorrower("-");
+                storage.updateLibrary(bookList, file);
+
+                System.out.println("The book has been returned to the library.");
+            } else {
+                throw new DukeException("ERROR: The book entries in the library" +
+                        "is inconsistent. Please check!.");
+            }
+
+        } else {
+            throw new DukeException("ERROR: This inconsistency suggests an error " +
+                    "in the library. Please check the details of each book in the " +
+                    "library.");
+        }
+    }
+
+    public boolean isAvailable (ArrayList<Book> bookList, String title) {
+        for (int i = 0; i < bookList.size(); i++) {
+            if (title.equalsIgnoreCase(bookList.get(i).getTitle())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
