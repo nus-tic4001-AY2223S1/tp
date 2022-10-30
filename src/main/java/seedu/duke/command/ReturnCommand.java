@@ -12,7 +12,7 @@ public class ReturnCommand extends Command {
     public void execute(String user, String userInput,
                         ArrayList<Book> bookList, Storage storage,
                         File file) throws DukeException {
-        String title = userInput.substring(8).trim();
+        String title = userInput.split("/")[1].trim();
         int bookIndex = 0;
 
         if (isAvailable(bookList, title)) {

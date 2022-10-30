@@ -1,7 +1,6 @@
 package seedu.duke.command;
 
 import seedu.duke.book.Book;
-import seedu.duke.exception.DukeException;
 import seedu.duke.storage.Storage;
 
 import java.io.File;
@@ -11,7 +10,7 @@ public class ExitCommand extends Command{
     @Override
     public void execute(String user, String userInput,
                         ArrayList<Book> bookList, Storage storage,
-                        File file) throws DukeException {
+                        File file) {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
