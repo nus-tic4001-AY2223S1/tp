@@ -25,10 +25,12 @@ public class Duke {
 
     public Duke(String user) {
         this.user = user;
-        String home = System.getProperty("user.home");
-        java.nio.file.Path pathLibraryFile = java.nio.file.Paths.get(home,
-                "/Desktop/librarian/", "library.txt");
+
+        String userDirectory = System.getProperty("user.dir");
+        java.nio.file.Path pathLibraryFile = java.nio.file.Paths.get(userDirectory, "library.txt");
         libraryFile = pathLibraryFile.toFile();
+        System.out.println(pathLibraryFile);
+        System.out.println(libraryFile);
 
         if (!libraryFile.exists()) {
             System.out.println("\nThe library file does not exists! Please check the file " +

@@ -11,8 +11,8 @@ import seedu.duke.exception.DukeException;
 
 /**
  * <code>Parser</code> class translates all the user input commands into a Librarian
- * app readable format. In addition, it provides optimized CLI syntax in support for
- * an efficient experience of end-users.
+ * app readable format. In addition, it provides optimized CLI syntax to support
+ * efficient typing experience of end-users.
  */
 public class Parser {
     public static Command parseUserInput(String userInput) throws DukeException {
