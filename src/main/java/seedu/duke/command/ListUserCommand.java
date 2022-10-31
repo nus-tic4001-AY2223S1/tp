@@ -40,7 +40,7 @@ public class ListUserCommand extends Command {
     }
 
     /**
-     * Checks whether the requested book is borrowed and out of the library.
+     * Checks whether the requested book is borrowed by the current user.
      *
      * @param user username (case-sensitive) of the current user.
      * @param bookList <code>ArrayList</code> data structure of all the
