@@ -11,6 +11,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * <code>Duke</code> class is the main class of the Librarian application.
+ * This includes the <code>main</code> and <code>run</code> methods that
+ * taps into the abstracted classes.
+ */
 public class Duke {
     private String user;
     private static File libraryFile;

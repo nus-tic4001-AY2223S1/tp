@@ -7,7 +7,21 @@ import seedu.duke.storage.Storage;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * <code>ReturnCommand</code> class removes the link between the user and the
+ * book that is being returned.
+ */
 public class ReturnCommand extends Command {
+    /**
+     * Unlinks the subject book from the user.
+     *
+     * @param user username (case-sensitive) of the current user.
+     * @param userInput query typed in by the user.
+     * @param bookList <code>ArrayList</code> data structure of all the
+     *                 books in the library.
+     * @param storage class that ensures consistency of the record.
+     * @param file represents the txt file that keeps the library record.
+     */
     @Override
     public void execute(String user, String userInput,
                         ArrayList<Book> bookList, Storage storage,
@@ -40,6 +54,13 @@ public class ReturnCommand extends Command {
         }
     }
 
+    /**
+     * Checks if the requested book exists in the library.
+     *
+     * @param bookList <code>ArrayList</code> data structure of all the
+     *                 books in the library.
+     * @param title title of the book that is being requested or borrowed.
+     */
     public boolean isAvailable (ArrayList<Book> bookList, String title) {
         for (int i = 0; i < bookList.size(); i++) {
             if (title.equalsIgnoreCase(bookList.get(i).getTitle())) {

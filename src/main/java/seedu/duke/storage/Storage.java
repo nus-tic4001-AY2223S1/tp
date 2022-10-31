@@ -12,6 +12,10 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * <code>Method</code> class handles the data transfer from the external txt file
+ * to the resizeable <code>ArrayList</code> data structure, and vice-versa.
+ */
 public class Storage {
     private ArrayList<Book> bookList;
 

@@ -7,7 +7,22 @@ import seedu.duke.storage.Storage;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * <code>ListCommand</code> allows the user to see all the books in the Library.
+ * It includes the details specific to the book and its current availability.
+ */
 public class ListCommand extends Command {
+    /**
+     * Prints out all the books in the library to the CLI. If the library.txt
+     * is empty, a <code>DukeException</code> is thrown.
+     *
+     * @param user username (case-sensitive) of the current user.
+     * @param userInput query typed in by the user.
+     * @param bookList <code>ArrayList</code> data structure of all the
+     *                 books in the library.
+     * @param storage class that ensures consistency of the record.
+     * @param file represents the txt file that keeps the library record.
+     */
     @Override
     public void execute(String user, String userInput,
                         ArrayList<Book> bookList, Storage storage,

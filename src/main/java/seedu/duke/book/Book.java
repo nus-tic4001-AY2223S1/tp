@@ -1,5 +1,9 @@
 package seedu.duke.book;
 
+/**
+ * <code>Book</code> class represents all the information of a book including
+ * its availability and who checks it out.
+ */
 public class Book {
 
     protected String title;

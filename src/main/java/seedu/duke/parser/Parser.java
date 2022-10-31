@@ -9,29 +9,41 @@ import seedu.duke.command.ReturnCommand;
 import seedu.duke.command.SearchCommand;
 import seedu.duke.exception.DukeException;
 
+/**
+ * <code>Parser</code> class translates all the user input commands into a Librarian
+ * app readable format. In addition, it provides optimized CLI syntax in support for
+ * an efficient experience of end-users.
+ */
 public class Parser {
     public static Command parseUserInput(String userInput) throws DukeException {
         try {
-            if (userInput.split("/")[0].trim().equalsIgnoreCase("exit")) {
+            if ((userInput.split("/")[0].trim()).equalsIgnoreCase("e") ||
+                    userInput.split("/")[0].trim().equalsIgnoreCase("exit")) {
                 return new ExitCommand();
-            } else if (userInput.split("/")[0].trim().equalsIgnoreCase("search")) {
+            } else if ((userInput.split("/")[0].trim() + "/" +
+                    userInput.split("/")[1].trim()).equalsIgnoreCase("s/t") ||
+                    (userInput.split("/")[0].trim() + "/" +
+                            userInput.split("/")[1].trim()).equalsIgnoreCase("s/a") ||
+                    (userInput.split("/")[0].trim() + "/" +
+                            userInput.split("/")[1].trim()).equalsIgnoreCase("s/c") ||
+                    userInput.split("/")[0].trim().equalsIgnoreCase("search")) {
                 return new SearchCommand();
-            } else if (userInput.split("/")[0].trim().equalsIgnoreCase("borrow")) {
+            } else if ((userInput.split("/")[0].trim() + "/").equalsIgnoreCase("b/") ||
+                    userInput.split("/")[0].trim().equalsIgnoreCase("borrow")) {
                 return new BorrowCommand();
-            } else if (userInput.split("/")[0].trim().equalsIgnoreCase("return")) {
+            } else if ((userInput.split("/")[0].trim() + "/").equalsIgnoreCase("r/") ||
+                    userInput.split("/")[0].trim().equalsIgnoreCase("return")) {
                 return new ReturnCommand();
-            } else if ((userInput.split("/")[0].trim() + " /" + userInput.split("/")[1].trim()).
+            } else if (userInput.equalsIgnoreCase("l/u") ||
+                    (userInput.split("/")[0].trim() + " /" + userInput.split("/")[1].trim()).
                     equalsIgnoreCase("list /user") || (userInput.split("/")[0].trim() +
                     " /" + userInput.split("/")[1].trim()).equalsIgnoreCase("list /u")) {
                 return new ListUserCommand();
-            } else if ((userInput.split("/")[0].trim() + " /" + userInput.split("/")[1].trim()).
+            } else if (userInput.equalsIgnoreCase("l/l") ||
+                    (userInput.split("/")[0].trim() + " /" + userInput.split("/")[1].trim()).
                     equalsIgnoreCase("list /library") || (userInput.split("/")[0].trim() +
                     " /" + userInput.split("/")[1].trim()).equalsIgnoreCase("list /l")) {
                 return new ListCommand();
-            } else if (userInput.split("/")[0].trim().equalsIgnoreCase("borrow")) {
-                return new BorrowCommand();
-            } else if (userInput.split("/")[0].trim().equalsIgnoreCase("return")) {
-                return new ReturnCommand();
             } else {
                 throw new DukeException("\u2639 " + "OOPS!!! I'm sorry, " +
                         "but I don't know what that means :-(");
