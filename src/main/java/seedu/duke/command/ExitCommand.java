@@ -7,10 +7,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * <code>ExitCommand</code> class is an abstract class for terminating
+ * <code>ExitCommand</code> class is a class for terminating
  * the Librarian application.
  */
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
     /**
      * Terminates the Librarian application.
      *

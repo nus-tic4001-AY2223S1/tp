@@ -2,17 +2,17 @@
 
 ## Introduction
 
-Librarian is a cross-platform CLI application tool for managing book borrowing related activities. The app is optimized, i.e. shortcut keys are provided, to support efficient typing experience of end-users.
+**Librarian** is a cross-platform CLI application tool for managing book borrowing related activities. The app is optimized, i.e. shortcut keys are provided, to support efficient typing experience of end-users.
 
 Librarian allows the users to: <code>list</code> <code>search</code> <code>borrow</code> <code>return</code> <code>reserve</code>
 
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of Librarian app, `duke.jar` and the library.txt, [here](https://github.com/AY2223S1-TIC4001-F18-1/tp/releases).
+2. Download the latest version of Librarian app, `librarian.jar` and the library.txt, [here](https://github.com/AY2223S1-TIC4001-F18-1/tp/releases).
 3. Copy the file to the folder you want to use as the working folder for your Librarian.
 4. Open a terminal and navigate to the working folder where the Librarian app is copied.
-5. To run the application, type `java -jar duke.jar` and hit the `enter` key.
+5. To run the application, type `java -jar librarian.jar` and hit the `enter` key.
 6. To see what commands are available and their use, you may either type `help/` or `h/`, then hit the `enter` key, or see the Features section below.
 
 ## Features
@@ -25,11 +25,11 @@ Librarian commands are executed by typing the command in the terminal, then hitt
 
 Ensure that you have done the steps described above under the "Quick Start" section.
 
-syntax: `java -jar duke.jar`
+syntax: `java -jar librarian.jar`
 <br />
 <br />
 
-#### EXITING THE PROGRAM
+#### TERMINATING THE PROGRAM
 
 syntax: `exit/`
 <br />
@@ -56,12 +56,16 @@ syntax: `list/user`
 #### BORROWING A BOOK
 
 syntax: `borrow/<book_title>`
+
+example: `borrow/clean code`
 <br />
 <br />
 
 #### RETURNING A BOOK
 
 syntax: `return/<book_title>`
+
+example: `return/clean code`
 <br />
 <br />
 
@@ -90,7 +94,7 @@ example: `search/category/programming` `search/category/civil engineering` `sear
 ## FAQ
 
 **Q:** Can I run Librarian in Mac or Linux operating system? <br />
-**A:** Librarian is a cross-platform CLI application tool. So, the app will run regardless what OS you are using.
+**A:** Librarian is a cross-platform CLI application tool. So, the app will run regardless of the OS that you are using.
 <br />
 <br />
 **Q:** Will the commands described above work in Mac or Linux operating systems? <br />
@@ -100,7 +104,7 @@ example: `search/category/programming` `search/category/civil engineering` `sear
 
 | Action             | Command                        | Shortcut           |
 |--------------------|--------------------------------|--------------------|
-| Run                | `java -jar duke.jar`           | -                  |
+| Run                | `java -jar librarian.jar`      | -                  |
 | Exit               | `exit/`                        | `e/`               |
 | Help               | `help/`                        | `h/`               |
 | List Library       | `list/library`                 | `l/l`              |
