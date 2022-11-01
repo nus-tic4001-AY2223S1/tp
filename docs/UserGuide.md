@@ -2,41 +2,111 @@
 
 ## Introduction
 
-{Give a product intro}
+Librarian is a cross-platform CLI application tool for managing book borrowing related activities. The app is optimized, i.e. shortcut keys are provided, to support efficient typing experience of end-users.
+
+Librarian allows the users to: <code>list</code> <code>search</code> <code>borrow</code> <code>return</code> <code>reserve</code>
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+2. Download the latest version of Librarian app, `duke.jar` and the library.txt, [here](https://github.com/AY2223S1-TIC4001-F18-1/tp/releases).
+3. Copy the file to the folder you want to use as the working folder for your Librarian.
+4. Open a terminal and navigate to the working folder where the Librarian app is copied.
+5. To run the application, type `java -jar duke.jar` and hit the `enter` key.
+6. To see what commands are available and their use, you may either type `help/` or `h/`, then hit the `enter` key, or see the Features section below.
 
-## Features 
+## Features
 
-{Give detailed description of each feature}
+Librarian commands are executed by typing the command in the terminal, then hitting the `enter` key. Librarian commands are not case-sensitive. That is, `search/title/Refactoring` can also be typed as `SEARCH /TITLE /REFACTORING` or as `SEArch    /      tiTLE     /     refacTORing`.
+<br />
+<br />
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+#### RUNNING THE PROGRAM
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Ensure that you have done the steps described above under the "Quick Start" section.
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+syntax: `java -jar duke.jar`
+<br />
+<br />
 
-Example of usage: 
+#### EXITING THE PROGRAM
 
-`todo n/Write the rest of the User Guide d/next week`
+syntax: `exit/`
+<br />
+<br />
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+#### CHECKING THE COMMANDS
+
+syntax: `help/`
+<br />
+<br />
+
+#### CHECKING THE LIBRARY
+
+syntax: `list/library`
+<br />
+<br />
+
+#### CHECKING YOUR ACCOUNT
+
+syntax: `list/user`
+<br />
+<br />
+
+#### BORROWING A BOOK
+
+syntax: `borrow/<book_title>`
+<br />
+<br />
+
+#### RETURNING A BOOK
+
+syntax: `return/<book_title>`
+<br />
+<br />
+
+#### SEARCHING BOOK(S) BY TITLE
+
+syntax: `search/title/<keyword(s)>`
+
+example: `search/title/work` `search/title/Steel Structures` `search/title/RALPH`
+<br />
+<br />
+
+#### SEARCHING BOOK(S) BY AUTHOR
+
+syntax: `search/author/<keyword(s)>`
+
+example: `search/author/reddy` `search/author/Martin Fowler` `search/author/RALPH`
+<br />
+<br />
+
+#### SEARCHING BOOK(S) BY CATEGORY
+
+syntax: `search/category/<keyword(s)>`
+
+example: `search/category/programming` `search/category/civil engineering` `search/category/BUSINESS`
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
-
-**A**: {your answer here}
+**Q:** Can I run Librarian in Mac or Linux operating system? <br />
+**A:** Librarian is a cross-platform CLI application tool. So, the app will run regardless what OS you are using.
+<br />
+<br />
+**Q:** Will the commands described above work in Mac or Linux operating systems? <br />
+**A:** Yes, the same syntax are used even for Mac or Linux operating systems.
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| Action             | Command                        | Shortcut           |
+|--------------------|--------------------------------|--------------------|
+| Run                | `java -jar duke.jar`           | -                  |
+| Exit               | `exit/`                        | `e/`               |
+| Help               | `help/`                        | `h/`               |
+| List Library       | `list/library`                 | `l/l`              |
+| List Account       | `list/user`                    | `l/u`              |
+| Borrow             | `borrow/<book_title>`          | `b/<book_title>`   |
+| Return             | `return/<book_title>`          | `r/<book_title>`   |
+| Search by Title    | `search/title/<keyword(s)>`    | `s/t/<keyword(s)>` |
+| Search by Author   | `search/author/<keyword(s)>`   | `s/a/<keyword(s)>` |
+| Search by Category | `search/category/<keyword(s)>` | `s/c/<keyword(s)>` |

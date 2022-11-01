@@ -1,31 +1,59 @@
 package seedu.duke.book;
 
+/**
+ * <code>Book</code> class represents all the information of a book including
+ * its availability and who checks it out.
+ */
 public class Book {
-    public String title;
-    public String author;
-    public String edition;
-    public String published;
-    public int totalCopy;
-    public int onShelf;
-    public String category;
+
+    protected String title;
+    protected String author;
+    protected String edition;
+    protected String published;
+    protected String category;
+    protected boolean onShelf;
+    protected String borrower;
 
     public Book(String title, String author, String edition,
-                String published, int totalCopy, int onShelf, String category) {
+                String published, String category, boolean onShelf, String borrower) {
         this.title = title;
         this.author = author;
         this.edition = edition;
         this.published = published;
-        this.totalCopy = totalCopy;
-        this.onShelf = onShelf;
         this.category = category;
+        this.onShelf = onShelf;
+        this.borrower = borrower;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+    public String getAuthor() { return author; }
+
+    public String getCategory() { return category; }
+
+    public boolean isOnShelf() {
+        return onShelf;
+    }
+
+    public void setOnShelf(boolean onShelf) {
+        this.onShelf = onShelf;
+    }
+
+    public String getBorrower() {
+        return borrower;
+    }
+
+    public void setBorrower(String borrower) {
+        this.borrower = borrower;
     }
 
     @Override
     public String toString() {
-        return " Title: " + title + "\n" + "       Author: " + author + "\n" +
-                "       Edition: " + edition + "\n" + "       Published: " +
-                published + "\n" + "       On-shelf: " + onShelf + " of " +
-                totalCopy + "\n" + "       Category: " + category + "\n";
+        return "Title: " + title + "\n" + "Author: " + author + "\n" +
+                "Edition: " + edition + "\n" + "Published: " +
+                published + "\n" + "Category: " + category + "\n" +
+                "On-shelf: " + onShelf + "\n" + "Borrower: " + borrower;
     }
 }
 

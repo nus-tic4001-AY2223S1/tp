@@ -1,70 +1,55 @@
 package seedu.duke.parser;
 
-import seedu.duke.book.Book;
-import seedu.duke.command.*;
+import seedu.duke.command.Command;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.ListCommand;
+import seedu.duke.command.ListUserCommand;
+import seedu.duke.command.BorrowCommand;
+import seedu.duke.command.ReturnCommand;
+import seedu.duke.command.SearchCommand;
 import seedu.duke.exception.DukeException;
-import seedu.duke.storage.Storage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Scanner;
-
+/**
+ * <code>Parser</code> class translates all the user input commands into a Librarian
+ * app readable format. In addition, it provides optimized CLI syntax to support
+ * efficient typing experience of end-users.
+ */
 public class Parser {
-    public static void  parseBookFromFile(Path pathFile, Storage storage, ArrayList<Book> bookList) {
-        try {
-            File f = pathFile.toFile();
-            Scanner s = new Scanner(f);
-            String input = "";
-            Boolean isEmpty = false;
-
-            while (s.hasNext()) {
-                isEmpty = true;
-                String line = s.nextLine();
-
-                if (line.length() == 0) {
-                    storage.loadBookFromFile(input);
-                    input = "";
-                } else {
-                    input = input + line + " | ";
-                }
-            }
-
-            if (isEmpty) {
-                storage.loadBookFromFile(input);
-
-                System.out.println("    There are " + bookList.size() +
-                        " different book(s) in the library at the moment.\n");
-            } else {
-                System.out.println("    There are no books available in the library at the moment.\n");
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + e.getMessage());
-        }
-    }
-
     public static Command parseUserInput(String userInput) throws DukeException {
-        String[] firstWord = userInput.split(" ", 2);
-
-        int pos = userInput.indexOf(" ");
-        int pos1 = userInput.indexOf(" ", pos+1);
-        String secondWord = userInput.substring(pos+1, pos1);
-
-
-        if (firstWord[0].equalsIgnoreCase("bye")) {
-            return new ExitCommand();
-        } else if (firstWord[0].equalsIgnoreCase("list")) {
-            if (secondWord.equalsIgnoreCase("user")) {
+        try {
+            if ((userInput.split("/")[0].trim()).equalsIgnoreCase("e") ||
+                    userInput.split("/")[0].trim().equalsIgnoreCase("exit")) {
+                return new ExitCommand();
+            } else if ((userInput.split("/")[0].trim() + "/" +
+                    userInput.split("/")[1].trim()).equalsIgnoreCase("s/t") ||
+                    (userInput.split("/")[0].trim() + "/" +
+                            userInput.split("/")[1].trim()).equalsIgnoreCase("s/a") ||
+                    (userInput.split("/")[0].trim() + "/" +
+                            userInput.split("/")[1].trim()).equalsIgnoreCase("s/c") ||
+                    userInput.split("/")[0].trim().equalsIgnoreCase("search")) {
+                return new SearchCommand();
+            } else if ((userInput.split("/")[0].trim() + "/").equalsIgnoreCase("b/") ||
+                    userInput.split("/")[0].trim().equalsIgnoreCase("borrow")) {
+                return new BorrowCommand();
+            } else if ((userInput.split("/")[0].trim() + "/").equalsIgnoreCase("r/") ||
+                    userInput.split("/")[0].trim().equalsIgnoreCase("return")) {
+                return new ReturnCommand();
+            } else if (userInput.equalsIgnoreCase("l/u") ||
+                    (userInput.split("/")[0].trim() + " /" + userInput.split("/")[1].trim()).
+                    equalsIgnoreCase("list /user") || (userInput.split("/")[0].trim() +
+                    " /" + userInput.split("/")[1].trim()).equalsIgnoreCase("list /u")) {
                 return new ListUserCommand();
-            } else return new ListCommand();
-        } else if (firstWord[0].equalsIgnoreCase("borrow")) {
-            return new BorrowCommand();
-        } else if (firstWord[0].equalsIgnoreCase("return")) {
-            return new ReturnCommand();
-        } else {
-            throw new DukeException("\u2639 " + "OOPS!!! I'm sorry, " +
-                    "but I don't know what that means :-(");
+            } else if (userInput.equalsIgnoreCase("l/l") ||
+                    (userInput.split("/")[0].trim() + " /" + userInput.split("/")[1].trim()).
+                    equalsIgnoreCase("list /library") || (userInput.split("/")[0].trim() +
+                    " /" + userInput.split("/")[1].trim()).equalsIgnoreCase("list /l")) {
+                return new ListCommand();
+            } else {
+                throw new DukeException("\u2639 " + "OOPS!!! I'm sorry, " +
+                        "but I don't know what that means :-(");
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Refer to documentation for the command syntax: " + e.getMessage());
         }
     }
 }
