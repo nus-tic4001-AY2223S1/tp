@@ -2,22 +2,32 @@
 
 ## Introduction
 
-**Librarian** is a cross-platform CLI application tool for managing book borrowing related activities. The app is optimized, i.e. shortcut keys are provided, to support efficient typing experience of end-users.
+**Librarian** is a cross-platform CLI application tool for managing book borrowing related activities. 
+
+The app is optimized, i.e. shortcut keys are provided, to support efficient typing experience of end-users.
 
 Librarian allows the users to: <code>list</code> <code>search</code> <code>borrow</code> <code>return</code> <code>reserve</code>
 
 ## Quick Start
 
-1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of Librarian app, `librarian.jar` and the library.txt, [here](https://github.com/AY2223S1-TIC4001-F18-1/tp/releases).
-3. Copy the file to the folder you want to use as the working folder for your Librarian.
-4. Open a terminal and navigate to the working folder where the Librarian app is copied.
-5. To run the application, type `java -jar librarian.jar` and hit the `enter` key.
-6. To see what commands are available and their use, you may either type `help/` or `h/`, then hit the `enter` key, or see the Features section below.
+### Step 1
+Ensure that you have Java 11 or above installed.
+### Step 2
+Download the latest version of Librarian app, `librarian.jar` and the library.txt, [here](https://github.com/AY2223S1-TIC4001-F18-1/tp/releases).
+### Step 3
+Copy the file to the folder you want to use as the working folder for your Librarian.
+### Step 4
+Open a terminal and navigate to the working folder where the Librarian app is copied.
+### Step 5
+To run the application, type `java -jar librarian.jar` and hit the `enter` key.
+### Step 6
+To see what commands are available and their use, you may either type `help/` or `h/`, then hit the `enter` key, or see the Features section below.
 
 ## Features
 
-Librarian commands are executed by typing the command in the terminal, then hitting the `enter` key. Librarian commands are not case-sensitive. That is, `search/title/Refactoring` can also be typed as `SEARCH /TITLE /REFACTORING` or as `SEArch    /      tiTLE     /     refacTORing`.
+Librarian commands are executed by typing the command in the terminal, then hitting the `enter` key. 
+
+Librarian commands are not case-sensitive. That is, `search/title/Refactoring` can also be typed as `SEARCH /TITLE /REFACTORING` or as `SEArch    /      tiTLE     /     refacTORing`.
 <br />
 <br />
 
