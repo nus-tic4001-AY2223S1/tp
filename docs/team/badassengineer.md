@@ -1,7 +1,9 @@
 # Benjamin B. Rabang III - Project Portfolio Page
 
 ## Overview
-**Librarian** is a cross-platform CLI application tool for managing book borrowing related activities. The app is optimized, i.e. shortcut keys are provided, to support efficient typing experience of end-users.
+**Librarian** is a cross-platform CLI application tool for managing book borrowing related activities. 
+
+The app is optimized, i.e. shortcut keys are provided, to support efficient typing experience of end-users.
 
 Librarian allows the users to: <code>list</code> <code>search</code> <code>borrow</code> <code>return</code> <code>reserve</code>
 
@@ -33,9 +35,9 @@ Librarian allows the users to: <code>list</code> <code>search</code> <code>borro
 
 ### Documentation
 - [x] ReadMe: Provided a simple introduction of the product.
-- [x] User Guide: Provided user guide for users to refer to. Application commands from here were also code-implemented for `UserCommand` feature. 
+- [x] User Guide: Provided user guide for users to refer to. Application commands from UG were also code-implemented as a `help` feature. 
 - [ ] Developer Guide: 
 - [x] About Us: Prepared simple About Us page.
-- [x] Project Portfolio Page: Provided my PPP to show my contribution to the Librarian project.
+- [x] Project Portfolio Page: Provided PPP to show my contribution to the Librarian project.
 - [ ] Product Website: 
 - [x] Demo Video: Recorded a demo video in addition to the User Guide and `help` commands provided.

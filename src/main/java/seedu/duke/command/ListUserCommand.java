@@ -28,14 +28,14 @@ public class ListUserCommand extends Command {
                         ArrayList<Book> bookList, Storage storage,
                         File file) throws DukeException {
         if (didUserBorrow(user, bookList)) {
-            System.out.println("Here are the books that you borrowed:");
+            System.out.println("Here are the borrowed books in your account:");
             for (int i = 0; i < bookList.size(); i++) {
                 if (user.equals(bookList.get(i).getBorrower())) {
                     System.out.println("\n" + bookList.get(i));
                 }
             }
         } else {
-            throw new DukeException("Your account is clear. No books were borrowed.");
+            throw new DukeException("Your account is cleared from any borrowed book(s).");
         }
     }
 

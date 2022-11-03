@@ -60,13 +60,10 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        System.out.println("\nEnter your username (case sensitive!!!) to begin: \n");
+        UI ui = new UI();
+        String user = ui.enterUsername();
 
-        Scanner in = new Scanner(System.in);
-        String user = in.nextLine();
-
-        System.out.println("__________________________________________________________" +
-                "__________________________________________");
+        ui.showLine();
 
         new Duke(user).run();
     }

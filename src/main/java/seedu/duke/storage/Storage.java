@@ -27,23 +27,23 @@ public class Storage {
         try {
             File f = pathFile.toFile();
             Scanner s = new Scanner(f);
-            String input = "";
-            Boolean isEmpty = false;
+            StringBuilder input = new StringBuilder();
+            boolean isEmpty = false;
 
             while (s.hasNext()) {
                 isEmpty = true;
                 String line = s.nextLine();
 
                 if (line.length() == 0) {
-                    addBook(input);
-                    input = "";
+                    addBook(input.toString());
+                    input = new StringBuilder();
                 } else {
-                    input +=  line + " | ";
+                    input.append(line).append(" | ");
                 }
             }
 
             if (isEmpty) {
-                addBook(input);
+                addBook(input.toString());
 
                 System.out.println("There are " + bookList.size() +
                         " different book(s) in the library at the moment.\n");
@@ -64,7 +64,7 @@ public class Storage {
         String published = splitString[3].substring(11);
         String category = splitString[4].substring(10);
         boolean onShelf = Boolean.parseBoolean(splitString[5].substring(10));
-        String borrower = splitString[6].substring(10);
+        String borrower = !splitString[6].equals("") ? splitString[6].substring(10) : "";
 
         bookList.add(new Book(title, author, edition, published, category, onShelf, borrower));
     }
@@ -86,8 +86,7 @@ public class Storage {
 
     public void saveBookToLibrary(Book book, File file) throws DukeException {
         try {
-            File f = file;
-            Scanner s = new Scanner(f);
+            Scanner s = new Scanner(file);
             FileWriter fw = new FileWriter(file, true);
             boolean taskFound = false;
 

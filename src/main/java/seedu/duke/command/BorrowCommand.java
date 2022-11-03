@@ -29,7 +29,7 @@ public class BorrowCommand extends Command {
         String title = userInput.split("/")[1].trim();
         int bookIndex = 0;
 
-        if (isAvailable(bookList, title)) {
+        if (areDetailsCorrect(bookList, title)) {
             for (int i = 0; i < bookList.size(); i++) {
                 if (title.equalsIgnoreCase(bookList.get(i).getTitle())) {
                     bookIndex = i;
@@ -43,12 +43,13 @@ public class BorrowCommand extends Command {
 
                 System.out.println("The book has been added to your account.");
             } else {
-                throw new DukeException("The book was borrowed and has not been returned yet.");
+                throw new DukeException("The book was borrowed and has not been returned yet. " +
+                        "For now, you may reserve the book.");
             }
 
         } else {
-            throw new DukeException("That book is not available in the library yet. " +
-                    "You may check what's in the \nlibrary using the list /library or l/l command.");
+            throw new DukeException("The book is not available in the library yet. " +
+                    "\nYou may check what's in the library using the list/library or l/l command.");
         }
     }
 
@@ -59,7 +60,7 @@ public class BorrowCommand extends Command {
      *                 books in the library.
      * @param title title of the book that is being requested or borrowed.
      */
-    public boolean isAvailable (ArrayList<Book> bookList, String title) {
+    public boolean areDetailsCorrect (ArrayList<Book> bookList, String title) {
         for (int i = 0; i < bookList.size(); i++) {
             if (title.equalsIgnoreCase(bookList.get(i).getTitle())) {
                 return true;
@@ -73,3 +74,4 @@ public class BorrowCommand extends Command {
         return isExit = false;
     }
 }
+

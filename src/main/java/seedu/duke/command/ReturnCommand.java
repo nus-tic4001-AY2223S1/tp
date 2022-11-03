@@ -29,7 +29,7 @@ public class ReturnCommand extends Command {
         String title = userInput.split("/")[1].trim();
         int bookIndex = 0;
 
-        if (isAvailable(bookList, title)) {
+        if (areDetailsCorrect(bookList, title, user)) {
             for (int i = 0; i < bookList.size(); i++) {
                 if (title.equalsIgnoreCase(bookList.get(i).getTitle())) {
                     bookIndex = i;
@@ -38,32 +38,30 @@ public class ReturnCommand extends Command {
 
             if (!bookList.get(bookIndex).isOnShelf()) {
                 bookList.get(bookIndex).setOnShelf(true);
-                bookList.get(bookIndex).setBorrower("-");
+                bookList.get(bookIndex).setBorrower("");
                 storage.updateLibrary(bookList, file);
 
                 System.out.println("The book has been returned to the library.");
             } else {
-                throw new DukeException("ERROR: The book entries in the library" +
-                        "is inconsistent. Please check!.");
+                throw new DukeException("The book is still on the shelve! Please check your entry.");
             }
-
         } else {
-            throw new DukeException("ERROR: This inconsistency suggests an error " +
-                    "in the library. Please check the details of each book in the " +
-                    "library.");
+            throw new DukeException("Either the library does not have this book or you are not " +
+                    "the current borrower! Please check your entry.");
         }
     }
 
     /**
-     * Checks if the requested book exists in the library.
+     * Checks if the requested book exists in the library and the current user is the borrower.
      *
      * @param bookList <code>ArrayList</code> data structure of all the
      *                 books in the library.
      * @param title title of the book that is being requested or borrowed.
      */
-    public boolean isAvailable (ArrayList<Book> bookList, String title) {
+    public boolean areDetailsCorrect(ArrayList<Book> bookList, String title, String user) {
         for (int i = 0; i < bookList.size(); i++) {
-            if (title.equalsIgnoreCase(bookList.get(i).getTitle())) {
+            if (title.equalsIgnoreCase(bookList.get(i).getTitle()) &&
+                    user.equals(bookList.get(i).getBorrower())) {
                 return true;
             }
         }

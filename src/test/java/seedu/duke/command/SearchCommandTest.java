@@ -1,12 +1,11 @@
 package seedu.duke.command;
 
-import org.junit.jupiter.api.Test;
 import seedu.duke.book.Book;
 import seedu.duke.storage.Storage;
 
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SearchCommandTest {
     ArrayList<Book> bookList = new ArrayList<>();
