@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Duke {
     private String user;
-    private static File libraryFile;
+    private File libraryFile;
     private UI ui;
     private ArrayList<Book> bookList;
     private Storage storage;
