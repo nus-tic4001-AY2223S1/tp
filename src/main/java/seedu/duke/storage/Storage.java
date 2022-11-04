@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * <code>Method</code> class handles the data transfer from the external txt file
+ * <code>Storage</code> class handles the data transfer from the external txt file
  * to the resizeable <code>ArrayList</code> data structure, and vice-versa.
  */
 public class Storage {
@@ -27,23 +27,23 @@ public class Storage {
         try {
             File f = pathFile.toFile();
             Scanner s = new Scanner(f);
-            String input = "";
-            Boolean isEmpty = false;
+            StringBuilder input = new StringBuilder();
+            boolean isEmpty = false;
 
             while (s.hasNext()) {
                 isEmpty = true;
                 String line = s.nextLine();
 
                 if (line.length() == 0) {
-                    addBook(input);
-                    input = "";
+                    addBook(input.toString());
+                    input = new StringBuilder();
                 } else {
-                    input +=  line + " | ";
+                    input.append(line).append(" | ");
                 }
             }
 
             if (isEmpty) {
-                addBook(input);
+                addBook(input.toString());
 
                 System.out.println("There are " + bookList.size() +
                         " different book(s) in the library at the moment.\n");
@@ -64,9 +64,9 @@ public class Storage {
         String published = splitString[3].substring(11);
         String category = splitString[4].substring(10);
         boolean onShelf = Boolean.parseBoolean(splitString[5].substring(10));
-        String borrower = splitString[6].substring(10);
+        ArrayList<String> borrowers = loadBorrower(splitString[6].trim());
 
-        bookList.add(new Book(title, author, edition, published, category, onShelf, borrower));
+        bookList.add(new Book(title, author, edition, published, category, onShelf, borrowers));
     }
 
     public void updateLibrary(ArrayList<Book> bookList, File file) throws DukeException {
@@ -86,8 +86,7 @@ public class Storage {
 
     public void saveBookToLibrary(Book book, File file) throws DukeException {
         try {
-            File f = file;
-            Scanner s = new Scanner(f);
+            Scanner s = new Scanner(file);
             FileWriter fw = new FileWriter(file, true);
             boolean taskFound = false;
 
@@ -105,5 +104,16 @@ public class Storage {
         } catch (IOException e) {
             throw new DukeException("Something went wrong: " + e.getMessage());
         }
+    }
+
+    public ArrayList<String> loadBorrower(String s) {
+        ArrayList<String> borrowers = new ArrayList<>();
+        String[] splitString = !s.substring(11, s.indexOf("]")).equals("") ?
+                s.substring(11, s.indexOf("]")).trim().split(",") : new String[] {};
+
+        for (int i = 0; i < splitString.length; i++) {
+            borrowers.add(splitString[i].trim());
+        }
+        return borrowers;
     }
 }

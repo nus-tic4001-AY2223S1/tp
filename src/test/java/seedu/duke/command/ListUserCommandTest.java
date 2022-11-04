@@ -1,12 +1,11 @@
 package seedu.duke.command;
 
-import org.junit.jupiter.api.Test;
 import seedu.duke.book.Book;
 import seedu.duke.storage.Storage;
 
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ListUserCommandTest {
     ArrayList<Book> bookList = new ArrayList<>();
@@ -14,7 +13,7 @@ class ListUserCommandTest {
     String s = "Title: Clean Code | Author: Robert C. Martin |" +
             " Edition: 2nd edition | Published: 2012 |" +
             " Category: Software Engineering | " +
-            "On-shelf: true | Borrower: Benjamin";
+            "On-shelf: true | Borrower: [Benjamin]";
 
     Storage storage = new Storage(bookList);
 
@@ -26,7 +25,7 @@ class ListUserCommandTest {
         String user2 = "Brent";
         ListUserCommand command = new ListUserCommand();
 
-        assertEquals(true, command.didUserBorrow(user1, bookList));
-        assertEquals(false, command.didUserBorrow(user2, bookList));
+        assertEquals(true, command.didUserBorrow(bookList, user1));
+        assertEquals(false, command.didUserBorrow(bookList, user2));
     }
 }

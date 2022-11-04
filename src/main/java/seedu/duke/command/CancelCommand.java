@@ -8,12 +8,12 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * <code>ReturnCommand</code> class returns the book borrowed by the current
- * user.
+ * <code>CancelCommand</code> class cancels the request made by the user by removing
+ * the user's username from the list of reserve.
  */
-public class ReturnCommand extends Command {
+public class CancelCommand extends Command {
     /**
-     * removes the link between the user and the book that is being returned.
+     * Cancels the requested book.
      *
      * @param user username (case-sensitive) of the current user.
      * @param userInput query typed in by the user.
@@ -37,22 +37,18 @@ public class ReturnCommand extends Command {
             }
 
             if (!bookList.get(bookIndex).getBorrower().isEmpty() &&
-                    user.equals(bookList.get(bookIndex).getBorrower().get(0))) {
+                    bookList.get(bookIndex).getBorrower().size() > 1 &&
+                    bookList.get(bookIndex).getBorrower().subList(1,
+                            bookList.get(bookIndex).getBorrower().size()).contains(user)) {
 
-                bookList.get(bookIndex).getBorrower().remove(0);
-
-                if (bookList.get(bookIndex).getBorrower().isEmpty()) {
-                    bookList.get(bookIndex).setOnShelf(true);
-                } else {
-                    bookList.get(bookIndex).setOnShelf(false);
-                }
-
+                bookList.get(bookIndex).getBorrower().remove(user);
                 storage.updateLibrary(bookList, file);
 
-                System.out.println("The book has been returned to the library.");
+                System.out.println("Your book reservation was successfully cancelled.");
             } else {
-                throw new DukeException("Book cannot be returned! You are not the current borrower of this book.");
+                throw new DukeException("Request failed!. You did not reserve this book.");
             }
+
         } else {
             throw new DukeException("We do not carry this book in the Library! Please try other books.");
         }
@@ -79,3 +75,4 @@ public class ReturnCommand extends Command {
         return isExit = false;
     }
 }
+

@@ -1,5 +1,7 @@
 package seedu.duke.book;
 
+import java.util.ArrayList;
+
 /**
  * <code>Book</code> class represents all the information of a book including
  * its availability and who checks it out.
@@ -12,10 +14,10 @@ public class Book {
     protected String published;
     protected String category;
     protected boolean onShelf;
-    protected String borrower;
+    protected ArrayList<String> borrower;
 
     public Book(String title, String author, String edition,
-                String published, String category, boolean onShelf, String borrower) {
+                String published, String category, boolean onShelf, ArrayList<String> borrower) {
         this.title = title;
         this.author = author;
         this.edition = edition;
@@ -24,28 +26,23 @@ public class Book {
         this.onShelf = onShelf;
         this.borrower = borrower;
     }
-
     public String getTitle() {
         return title;
     }
-    public String getAuthor() { return author; }
-
-    public String getCategory() { return category; }
-
+    public String getAuthor() {
+        return author;
+    }
+    public String getCategory() {
+        return category;
+    }
     public boolean isOnShelf() {
         return onShelf;
     }
-
     public void setOnShelf(boolean onShelf) {
         this.onShelf = onShelf;
     }
-
-    public String getBorrower() {
+    public ArrayList<String> getBorrower() {
         return borrower;
-    }
-
-    public void setBorrower(String borrower) {
-        this.borrower = borrower;
     }
 
     @Override

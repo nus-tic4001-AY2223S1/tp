@@ -8,12 +8,12 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * <code>ReturnCommand</code> class returns the book borrowed by the current
- * user.
+ * <code>ReserveCommand</code> class reserves the requested book to the
+ * user by adding its username to the list of borrowers.
  */
-public class ReturnCommand extends Command {
+public class ReserveCommand extends Command {
     /**
-     * removes the link between the user and the book that is being returned.
+     * Reserves the requested book to the user.
      *
      * @param user username (case-sensitive) of the current user.
      * @param userInput query typed in by the user.
@@ -23,8 +23,7 @@ public class ReturnCommand extends Command {
      * @param file represents the txt file that keeps the library record.
      */
     @Override
-    public void execute(String user, String userInput,
-                        ArrayList<Book> bookList, Storage storage,
+    public void execute(String user, String userInput, ArrayList<Book> bookList, Storage storage,
                         File file) throws DukeException {
         String title = userInput.split("/")[1].trim();
         int bookIndex = 0;
@@ -36,22 +35,15 @@ public class ReturnCommand extends Command {
                 }
             }
 
-            if (!bookList.get(bookIndex).getBorrower().isEmpty() &&
-                    user.equals(bookList.get(bookIndex).getBorrower().get(0))) {
+            if (!bookList.get(bookIndex).isOnShelf()) {
 
-                bookList.get(bookIndex).getBorrower().remove(0);
-
-                if (bookList.get(bookIndex).getBorrower().isEmpty()) {
-                    bookList.get(bookIndex).setOnShelf(true);
-                } else {
-                    bookList.get(bookIndex).setOnShelf(false);
-                }
-
+                bookList.get(bookIndex).getBorrower().add(user);
+                bookList.get(bookIndex).setOnShelf(false);
                 storage.updateLibrary(bookList, file);
 
-                System.out.println("The book has been returned to the library.");
+                System.out.println("The book has been reserved to your account!");
             } else {
-                throw new DukeException("Book cannot be returned! You are not the current borrower of this book.");
+                throw new DukeException("The book is available on-shelf! You can borrow it instead.");
             }
         } else {
             throw new DukeException("We do not carry this book in the Library! Please try other books.");
@@ -79,3 +71,4 @@ public class ReturnCommand extends Command {
         return isExit = false;
     }
 }
+

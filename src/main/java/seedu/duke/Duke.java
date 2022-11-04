@@ -9,7 +9,6 @@ import seedu.duke.ui.UI;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * <code>Duke</code> class is the main class of the Librarian application.
@@ -18,7 +17,7 @@ import java.util.Scanner;
  */
 public class Duke {
     private String user;
-    private static File libraryFile;
+    private File libraryFile;
     private UI ui;
     private ArrayList<Book> bookList;
     private Storage storage;
@@ -29,8 +28,6 @@ public class Duke {
         String userDirectory = System.getProperty("user.dir");
         java.nio.file.Path pathLibraryFile = java.nio.file.Paths.get(userDirectory, "library.txt");
         libraryFile = pathLibraryFile.toFile();
-        System.out.println(pathLibraryFile);
-        System.out.println(libraryFile);
 
         if (!libraryFile.exists()) {
             System.out.println("\nThe library file does not exists! Please check the file " +
@@ -62,13 +59,10 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        System.out.println("\nEnter your username (case sensitive!!!) to begin: \n");
+        UI ui = new UI();
+        String user = ui.enterUsername();
 
-        Scanner in = new Scanner(System.in);
-        String user = in.nextLine();
-
-        System.out.println("__________________________________________________________" +
-                "__________________________________________");
+        ui.showLine();
 
         new Duke(user).run();
     }

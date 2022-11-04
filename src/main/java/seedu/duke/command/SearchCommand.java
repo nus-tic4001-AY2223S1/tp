@@ -28,132 +28,107 @@ public class SearchCommand extends Command {
     public void execute(String user, String userInput,
                         ArrayList<Book> bookList, Storage storage,
                         File file) throws DukeException {
-        String by, keyword;
+        String by;
+        String[] keywords;
+        ArrayList<Book> relatedBooks = new ArrayList<>();
 
         try {
             by = userInput.split("/")[1].trim();
-            keyword = userInput.split("/")[2].trim();
+            keywords = userInput.split("/")[2].trim().split(",");
+
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Refer to documentation for the command syntax: " + e.getMessage());
         }
 
         if (by.equalsIgnoreCase("Title") || by.equalsIgnoreCase("T")) {
-            if (hasMatchingTitle(bookList, keyword)) {
-                System.out.println("Here are the book(s) related to your search keyword:");
-                printByTitle(bookList, keyword);
+            for (String keyword : keywords) {
+                hasMatchingTitle(bookList, keyword.trim(), relatedBooks);
+            }
+
+            if (!relatedBooks.isEmpty()) {
+                System.out.println("Here are the book(s) related to your keyword(s):");
+                for (Book book : relatedBooks) {
+                    System.out.println("\n" + book);
+                }
             } else {
-                throw new DukeException("No related books found. Try other keywords.");
+                throw new DukeException("No related books found. Try other keyword(s).");
             }
-        }
+        } else if (by.equalsIgnoreCase("Author") || by.equalsIgnoreCase("A")) {
+            for (String keyword : keywords) {
+                hasMatchingAuthor(bookList, keyword.trim(), relatedBooks);
+            }
 
-        if (by.equalsIgnoreCase("Author") || by.equalsIgnoreCase("A")) {
-            if (hasMatchingAuthor(bookList, keyword)) {
-                System.out.println("Here are the book(s) related to your search keyword:");
-                printByAuthor(bookList, keyword);
+            if (!relatedBooks.isEmpty()) {
+                System.out.println("Here are the book(s) related to your keyword(s):");
+                for (Book book : relatedBooks) {
+                    System.out.println("\n" + book);
+                }
             } else {
-                throw new DukeException("No related books found. Try other keywords.");
+                throw new DukeException("No related books found. Try other keyword(s).");
             }
-        }
+        } else if (by.equalsIgnoreCase("Category") || by.equalsIgnoreCase("C")) {
+            for (String keyword : keywords) {
+                hasMatchingCategory(bookList, keyword.trim(), relatedBooks);
+            }
 
-        if (by.equalsIgnoreCase("Category") || by.equalsIgnoreCase("C")) {
-            if (hasMatchingCategory(bookList, keyword)) {
-                System.out.println("Here are the book(s) related to your search keyword:");
-                printByCategory(bookList, keyword);
+            if (!relatedBooks.isEmpty()) {
+                System.out.println("Here are the book(s) related to your search keyword(s):");
+                for (Book book : relatedBooks) {
+                    System.out.println("\n" + book);
+                }
             } else {
-                throw new DukeException("No related books found. Try other keywords.");
+                throw new DukeException("No related books found. Try other keyword(s).");
             }
         }
     }
 
     /**
-     * Checks if the keywords appear in the book Title of all the books in the library.
+     * Populates book(s) related to keyword(s) by title.
      *
      * @param bookList <code>ArrayList</code> data structure of all the
      *                 books in the library.
      * @param keyword keyword provided by the end-user.
+     * @param relatedBooks a container for matching books.
      */
-    public boolean hasMatchingTitle (ArrayList<Book> bookList, String keyword) {
+    public void hasMatchingTitle (ArrayList<Book> bookList, String keyword, ArrayList<Book> relatedBooks) {
         for (int i = 0; i < bookList.size(); i++) {
-            if (bookList.get(i).getTitle().toLowerCase().contains(keyword.toLowerCase())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Checks if the keywords appear in the book Author of all the books in the library.
-     *
-     * @param bookList <code>ArrayList</code> data structure of all the
-     *                 books in the library.
-     * @param keyword keyword provided by the end-user.
-     */
-    public boolean hasMatchingAuthor (ArrayList<Book> bookList, String keyword) {
-        for (int i = 0; i < bookList.size(); i++) {
-            if (bookList.get(i).getAuthor().toLowerCase().contains(keyword.toLowerCase())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Checks if the keywords appear in the book Category of all the books in the library.
-     *
-     * @param bookList <code>ArrayList</code> data structure of all the
-     *                 books in the library.
-     * @param keyword keyword provided by the end-user.
-     */
-    public boolean hasMatchingCategory (ArrayList<Book> bookList, String keyword) {
-        for (int i = 0; i < bookList.size(); i++) {
-            if (bookList.get(i).getCategory().toLowerCase().contains(keyword.toLowerCase())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Prints out the books in the CLI which contain the user-provided keywords.
-     *
-     * @param bookList <code>ArrayList</code> data structure of all the
-     *                 books in the library.
-     * @param keyword keyword provided by the end-user.
-     */
-    public void printByTitle (ArrayList<Book> bookList, String keyword) {
-        for (int i = 0; i < bookList.size(); i++) {
-            if (bookList.get(i).getTitle().toLowerCase().contains(keyword.toLowerCase())) {
-                System.out.println("\n" + bookList.get(i));
+            if (bookList.get(i).getTitle().toLowerCase().contains(keyword.toLowerCase()) &&
+                    !relatedBooks.contains(bookList.get(i))) {
+                relatedBooks.add(bookList.get(i));
             }
         }
     }
 
     /**
-     * Prints out the books in the CLI which contain the user-provided keywords.
+     * Populates book(s) related to keyword(s) by author.
      *
      * @param bookList <code>ArrayList</code> data structure of all the
      *                 books in the library.
      * @param keyword keyword provided by the end-user.
+     * @param relatedBooks a container for matching books.
      */
-    public void printByAuthor (ArrayList<Book> bookList, String keyword) {
+    public void hasMatchingAuthor (ArrayList<Book> bookList, String keyword, ArrayList<Book> relatedBooks) {
         for (int i = 0; i < bookList.size(); i++) {
-            if (bookList.get(i).getAuthor().toLowerCase().contains(keyword.toLowerCase())) {
-                System.out.println("\n" + bookList.get(i));
+            if (bookList.get(i).getAuthor().toLowerCase().contains(keyword.toLowerCase()) &&
+                    !relatedBooks.contains(bookList.get(i))) {
+                relatedBooks.add(bookList.get(i));
             }
         }
     }
 
     /**
-     * Prints out the books in the CLI which contain the user-provided keywords.
+     * Populates book(s) related to keyword(s) by category.
      *
      * @param bookList <code>ArrayList</code> data structure of all the
      *                 books in the library.
      * @param keyword keyword provided by the end-user.
+     * @param relatedBooks a container for matching books.
      */
-    public void printByCategory (ArrayList<Book> bookList, String keyword) {
+    public void hasMatchingCategory (ArrayList<Book> bookList, String keyword, ArrayList<Book> relatedBooks) {
         for (int i = 0; i < bookList.size(); i++) {
-            if (bookList.get(i).getCategory().toLowerCase().contains(keyword.toLowerCase())) {
-                System.out.println("\n" + bookList.get(i));
+            if (bookList.get(i).getCategory().toLowerCase().contains(keyword.toLowerCase()) &&
+                    !relatedBooks.contains(bookList.get(i))) {
+                relatedBooks.add(bookList.get(i));
             }
         }
     }

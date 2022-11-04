@@ -27,28 +27,30 @@ public class ListUserCommand extends Command {
     public void execute(String user, String userInput,
                         ArrayList<Book> bookList, Storage storage,
                         File file) throws DukeException {
-        if (didUserBorrow(user, bookList)) {
-            System.out.println("Here are the books that you borrowed:");
+        if (didUserBorrow(bookList, user)) {
+            System.out.println("Here are the borrowed books in your account:");
+
             for (int i = 0; i < bookList.size(); i++) {
-                if (user.equals(bookList.get(i).getBorrower())) {
+                if (!bookList.get(i).getBorrower().isEmpty() && user.equals(bookList.get(i).getBorrower().get(0))) {
                     System.out.println("\n" + bookList.get(i));
                 }
             }
+
         } else {
-            throw new DukeException("Your account is clear. No books were borrowed.");
+            throw new DukeException("Your account is cleared from any borrowed book(s).");
         }
     }
 
     /**
-     * Checks whether the requested book is borrowed by the current user.
+     * Checks whether the user borrow at least 1 book.
      *
      * @param user username (case-sensitive) of the current user.
      * @param bookList <code>ArrayList</code> data structure of all the
      *                 books in the library.
      */
-    public boolean didUserBorrow (String user, ArrayList<Book> bookList) {
+    public boolean didUserBorrow (ArrayList<Book> bookList, String user) {
         for (int i = 0; i < bookList.size(); i++) {
-            if (user.equals(bookList.get(i).getBorrower())) {
+            if (!bookList.get(i).getBorrower().isEmpty() && user.equals(bookList.get(i).getBorrower().get(0))) {
                 return true;
             }
         }

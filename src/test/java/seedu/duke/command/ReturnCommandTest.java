@@ -1,12 +1,11 @@
 package seedu.duke.command;
 
-import org.junit.jupiter.api.Test;
 import seedu.duke.book.Book;
 import seedu.duke.storage.Storage;
 
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ReturnCommandTest {
     ArrayList<Book> bookList = new ArrayList<>();
@@ -14,19 +13,21 @@ class ReturnCommandTest {
     String s = "Title: Clean Code | Author: Robert C. Martin |" +
             " Edition: 2nd edition | Published: 2012 |" +
             " Category: Software Engineering | " +
-            "On-shelf: true | Borrower: Benjamin";
+            "On-shelf: true | Borrower: [Benjamin]";
 
     Storage storage = new Storage(bookList);
 
     @Test
-    void isAvailable() {
+    void isInLibrary() {
         storage.addBook(s);
 
         String title1 = "Clean Code";
         String title2 = "Refactoring";
+        String borrower1 = "Benjamin";
+        String borrower2 = "Brent";
         ReturnCommand command = new ReturnCommand();
 
-        assertEquals(true, command.isAvailable(bookList, title1));
-        assertEquals(false, command.isAvailable(bookList, title2));
+        assertEquals(true, command.isInLibrary(bookList, title1));
+        assertEquals(false, command.isInLibrary(bookList, title2));
     }
 }

@@ -12,7 +12,7 @@ class BookTest {
     String s = "Title: Clean Code | Author: Robert C. Martin |" +
             " Edition: 2nd edition | Published: 2012 |" +
             " Category: Software Engineering | " +
-            "On-shelf: true | Borrower: Benjamin";
+            "On-shelf: true | Borrower: [Benjamin, Brent]";
 
     Storage storage = new Storage(bookList);
 
@@ -47,7 +47,7 @@ class BookTest {
     void getBorrower() {
         storage.addBook(s);
 
-        assertEquals("Benjamin", bookList.get(0).getBorrower());
+        assertEquals("Benjamin", bookList.get(0).getBorrower().get(0));
     }
 
     @Test
@@ -57,6 +57,6 @@ class BookTest {
         assertEquals("Title: Clean Code\nAuthor: Robert C. Martin\n" +
                 "Edition: 2nd edition\nPublished: 2012\n" +
                 "Category: Software Engineering\nOn-shelf: true\n" +
-                "Borrower: Benjamin", bookList.get(0).toString());
+                "Borrower: [Benjamin, Brent]", bookList.get(0).toString());
     }
 }

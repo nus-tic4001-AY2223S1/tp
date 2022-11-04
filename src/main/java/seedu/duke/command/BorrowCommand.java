@@ -1,19 +1,19 @@
 package seedu.duke.command;
 
 import seedu.duke.book.Book;
-import seedu.duke.exception.DukeException;
 import seedu.duke.storage.Storage;
+import seedu.duke.exception.DukeException;
 
 import java.io.File;
 import java.util.ArrayList;
 
 /**
- * <code>BorrowCommand</code> class creates a link between the user and the
- * book that is being requested or borrowed.
+ * <code>BorrowCommand</code> class assigns the book requested by the
+ * user.
  */
 public class BorrowCommand extends Command {
     /**
-     * Links the requested or borrowed book to the user.
+     * Links the requested book to the user's username.
      *
      * @param user username (case-sensitive) of the current user.
      * @param userInput query typed in by the user.
@@ -29,7 +29,7 @@ public class BorrowCommand extends Command {
         String title = userInput.split("/")[1].trim();
         int bookIndex = 0;
 
-        if (isAvailable(bookList, title)) {
+        if (isInLibrary(bookList, title)) {
             for (int i = 0; i < bookList.size(); i++) {
                 if (title.equalsIgnoreCase(bookList.get(i).getTitle())) {
                     bookIndex = i;
@@ -37,29 +37,29 @@ public class BorrowCommand extends Command {
             }
 
             if (bookList.get(bookIndex).isOnShelf()) {
+
+                bookList.get(bookIndex).getBorrower().add(user);
                 bookList.get(bookIndex).setOnShelf(false);
-                bookList.get(bookIndex).setBorrower(user);
                 storage.updateLibrary(bookList, file);
 
                 System.out.println("The book has been added to your account.");
             } else {
-                throw new DukeException("The book was borrowed and has not been returned yet.");
+                throw new DukeException("The book was borrowed and has not been returned yet. " +
+                        "You may reserve the book for now.");
             }
-
         } else {
-            throw new DukeException("That book is not available in the library yet. " +
-                    "You may check what's in the \nlibrary using the list /library or l/l command.");
+            throw new DukeException("We do not carry this book in the Library! Please try other books.");
         }
     }
 
     /**
-     * Checks if the requested book exists in the library.
+     * Checks if the requested book is available in the library.
      *
      * @param bookList <code>ArrayList</code> data structure of all the
      *                 books in the library.
      * @param title title of the book that is being requested or borrowed.
      */
-    public boolean isAvailable (ArrayList<Book> bookList, String title) {
+    public boolean isInLibrary(ArrayList<Book> bookList, String title) {
         for (int i = 0; i < bookList.size(); i++) {
             if (title.equalsIgnoreCase(bookList.get(i).getTitle())) {
                 return true;
@@ -73,3 +73,4 @@ public class BorrowCommand extends Command {
         return isExit = false;
     }
 }
+
