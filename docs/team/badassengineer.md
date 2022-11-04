@@ -17,7 +17,7 @@ Librarian allows the users to: <code>list</code> <code>search</code> <code>borro
 - [x] Borrow: Fixed the borrow command implementation get rid of the errors.
 - [x] Return: Fixed the return command implementation get rid of the errors.
 - [x] Search: Added search command that allows the user to search through the title, author or category by providing keyword(s).
-- [ ] Reserve: 
+- [x] Reserve: Added reserve command that allows the user to reserve the book under his account.
 
 ### Code Quality
 - [x] JUnit Tests: Added JUnit tests for `Book`, `ListUserCommand`, `BorrowCommand`, `ReturnCommand` and `SearchCommand`.
@@ -25,9 +25,9 @@ Librarian allows the users to: <code>list</code> <code>search</code> <code>borro
 - [x] Refactoring: Refactored the code to ensure that the program will work regardless of OS used and to follow coding standards.
 
 ### Project Management
-- [x] Conceptualize: Project planning, group discussion about we want to build, use cases, target users and product features. 
+- [x] Conceptualize: Project planning, group discussion about what we want to build, use cases, target users and product features. 
 - [x] Managed released of `Librarian_v.1.0`, `Librarian_v.2.0`, `Librarian_v.3.0` on GitHub.
-- [x] Create PRs: `[TIC4001-F18-1] Librarian #1`, `[TIC4001-F18-1] Librarian #2`, `[TIC4001-F18-1] Librarian #3`, `[TIC4001-F18-1] Librarian #4`.
+- [x] Create PRs: `[TIC4001-F18-1] Librarian #1`, `[TIC4001-F18-1] Librarian #2`, `[TIC4001-F18-1] Librarian #3`.
 
 ### Community
 - [x] PRs Review: Handles PRs
@@ -35,9 +35,9 @@ Librarian allows the users to: <code>list</code> <code>search</code> <code>borro
 
 ### Documentation
 - [x] ReadMe: Provided a simple introduction of the product.
-- [x] User Guide: Provided user guide for users to refer to. Application commands from UG were also code-implemented as a `help` feature. 
+- [x] User Guide: Provided user guide for users to refer to which can be found [here](https://github.com/badassengineer/tp/blob/master/docs/UserGuide.md/). Application commands from UG were also code-implemented as a `help` feature. 
 - [ ] Developer Guide: 
 - [x] About Us: Prepared simple About Us page.
 - [x] Project Portfolio Page: Provided PPP to show my contribution to the Librarian project.
-- [ ] Product Website: 
+- [x] Product Website: Simple product website is provided [here](https://badassengineer.github.io/tp/).
 - [x] Demo Video: Recorded a demo video in addition to the User Guide and `help` commands provided.

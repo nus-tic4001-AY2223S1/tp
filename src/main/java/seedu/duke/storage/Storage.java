@@ -64,9 +64,9 @@ public class Storage {
         String published = splitString[3].substring(11);
         String category = splitString[4].substring(10);
         boolean onShelf = Boolean.parseBoolean(splitString[5].substring(10));
-        String borrower = !splitString[6].equals("") ? splitString[6].substring(10) : "";
+        ArrayList<String> borrowers = loadBorrower(splitString[6].trim());
 
-        bookList.add(new Book(title, author, edition, published, category, onShelf, borrower));
+        bookList.add(new Book(title, author, edition, published, category, onShelf, borrowers));
     }
 
     public void updateLibrary(ArrayList<Book> bookList, File file) throws DukeException {
@@ -104,5 +104,16 @@ public class Storage {
         } catch (IOException e) {
             throw new DukeException("Something went wrong: " + e.getMessage());
         }
+    }
+
+    public ArrayList<String> loadBorrower(String s) {
+        ArrayList<String> borrowers = new ArrayList<>();
+        String[] splitString = !s.substring(11, s.indexOf("]")).equals("") ?
+                s.substring(11, s.indexOf("]")).trim().split(",") : new String[] {};
+
+        for (int i = 0; i < splitString.length; i++) {
+            borrowers.add(splitString[i].trim());
+        }
+        return borrowers;
     }
 }

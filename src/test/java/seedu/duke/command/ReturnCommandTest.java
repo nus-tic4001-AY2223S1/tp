@@ -13,12 +13,12 @@ class ReturnCommandTest {
     String s = "Title: Clean Code | Author: Robert C. Martin |" +
             " Edition: 2nd edition | Published: 2012 |" +
             " Category: Software Engineering | " +
-            "On-shelf: true | Borrower: Benjamin";
+            "On-shelf: true | Borrower: [Benjamin]";
 
     Storage storage = new Storage(bookList);
 
     @Test
-    void areDetailsCorrect() {
+    void isInLibrary() {
         storage.addBook(s);
 
         String title1 = "Clean Code";
@@ -27,7 +27,7 @@ class ReturnCommandTest {
         String borrower2 = "Brent";
         ReturnCommand command = new ReturnCommand();
 
-        assertEquals(true, command.areDetailsCorrect(bookList, title1, borrower1));
-        assertEquals(false, command.areDetailsCorrect(bookList, title2, borrower2));
+        assertEquals(true, command.isInLibrary(bookList, title1));
+        assertEquals(false, command.isInLibrary(bookList, title2));
     }
 }

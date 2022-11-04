@@ -7,6 +7,8 @@ import seedu.duke.command.ListCommand;
 import seedu.duke.command.ListUserCommand;
 import seedu.duke.command.BorrowCommand;
 import seedu.duke.command.ReturnCommand;
+import seedu.duke.command.ReserveCommand;
+import seedu.duke.command.CancelCommand;
 import seedu.duke.command.SearchCommand;
 import seedu.duke.exception.DukeException;
 
@@ -32,6 +34,12 @@ public class Parser {
                             userInput.split("/")[1].trim()).equalsIgnoreCase("s/c") ||
                     userInput.split("/")[0].trim().equalsIgnoreCase("search")) {
                 return new SearchCommand();
+            } else if ((userInput.split("/")[0].trim() + "/").equalsIgnoreCase("rb/") ||
+                    userInput.split("/")[0].trim().equalsIgnoreCase("reserve")) {
+                return new ReserveCommand();
+            } else if ((userInput.split("/")[0].trim() + "/").equalsIgnoreCase("cb/") ||
+                    userInput.split("/")[0].trim().equalsIgnoreCase("cancel")) {
+                return new CancelCommand();
             } else if ((userInput.split("/")[0].trim() + "/").equalsIgnoreCase("b/") ||
                     userInput.split("/")[0].trim().equalsIgnoreCase("borrow")) {
                 return new BorrowCommand();
@@ -40,13 +48,11 @@ public class Parser {
                 return new ReturnCommand();
             } else if (userInput.equalsIgnoreCase("l/u") ||
                     (userInput.split("/")[0].trim() + " /" + userInput.split("/")[1].trim()).
-                    equalsIgnoreCase("list /user") || (userInput.split("/")[0].trim() +
-                    " /" + userInput.split("/")[1].trim()).equalsIgnoreCase("list /u")) {
+                    equalsIgnoreCase("list /user")) {
                 return new ListUserCommand();
             } else if (userInput.equalsIgnoreCase("l/l") ||
                     (userInput.split("/")[0].trim() + " /" + userInput.split("/")[1].trim()).
-                    equalsIgnoreCase("list /library") || (userInput.split("/")[0].trim() +
-                    " /" + userInput.split("/")[1].trim()).equalsIgnoreCase("list /l")) {
+                    equalsIgnoreCase("list /library")) {
                 return new ListCommand();
             } else {
                 throw new DukeException("\u2639 " + "OOPS!!! I'm sorry, " +

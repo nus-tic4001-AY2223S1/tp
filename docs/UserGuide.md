@@ -79,11 +79,27 @@ example: `return/clean code`
 <br />
 <br />
 
+#### RESERVING A BOOK
+
+syntax: `reserve/<book_title>`
+
+example: `reserve/clean code`
+<br />
+<br />
+
+#### CANCELING BOOK FOR RESERVATION 
+
+syntax: `cancel/<book_title>`
+
+example: `cancel/clean code`
+<br />
+<br />
+
 #### SEARCHING BOOK(S) BY TITLE
 
 syntax: `search/title/<keyword(s)>`
 
-example: `search/title/work` `search/title/Steel Structures` `search/title/RALPH`
+example: `search/title/work` `search/title/Structures, CODE`
 <br />
 <br />
 
@@ -91,7 +107,7 @@ example: `search/title/work` `search/title/Steel Structures` `search/title/RALPH
 
 syntax: `search/author/<keyword(s)>`
 
-example: `search/author/reddy` `search/author/Martin Fowler` `search/author/RALPH`
+example: `search/author/reddy` `search/author/Martin, robert`
 <br />
 <br />
 
@@ -99,7 +115,7 @@ example: `search/author/reddy` `search/author/Martin Fowler` `search/author/RALP
 
 syntax: `search/category/<keyword(s)>`
 
-example: `search/category/programming` `search/category/civil engineering` `search/category/BUSINESS`
+example: `search/category/programming` `search/category/mechanical, coding`
 
 ## FAQ
 
@@ -112,15 +128,17 @@ example: `search/category/programming` `search/category/civil engineering` `sear
 
 ## Command Summary
 
-| Action             | Command                        | Shortcut           |
-|--------------------|--------------------------------|--------------------|
-| Run                | `java -jar librarian.jar`      | -                  |
-| Exit               | `exit/`                        | `e/`               |
-| Help               | `help/`                        | `h/`               |
-| List Library       | `list/library`                 | `l/l`              |
-| List Account       | `list/user`                    | `l/u`              |
-| Borrow             | `borrow/<book_title>`          | `b/<book_title>`   |
-| Return             | `return/<book_title>`          | `r/<book_title>`   |
-| Search by Title    | `search/title/<keyword(s)>`    | `s/t/<keyword(s)>` |
-| Search by Author   | `search/author/<keyword(s)>`   | `s/a/<keyword(s)>` |
-| Search by Category | `search/category/<keyword(s)>` | `s/c/<keyword(s)>` |
+| Action             | Command                                                    | Shortcut                                       |
+|--------------------|------------------------------------------------------------|------------------------------------------------|
+| Run                | `java -jar librarian.jar`                                  | -                                              |
+| Exit               | `exit/`                                                    | `e/`                                           |
+| Help               | `help/`                                                    | `h/`                                           |
+| List Library       | `list/library`                                             | `l/l`                                          |
+| List Account       | `list/user`                                                | `l/u`                                          |
+| Borrow             | `borrow/<book_title>`                                      | `b/<book_title>`                               |
+| Return             | `return/<book_title>`                                      | `r/<book_title>`                               |
+| Reserve            | `reserve/<book_title>`                                     | `rb/<book_title>`                              |
+| Cancel             | `cancel/<book_title>`                                      | `cb/<book_title>`                              |
+| Search by Title    | `search/title/<keyword_or_keywords_separated_by_comma>`    | `s/t/<keyword_or_keywords_separated_by_comma>` |
+| Search by Author   | `search/author/<keyword_or_keywords_separated_by_comma>`   | `s/a/<keyword_or_keywords_separated_by_comma>` |
+| Search by Category | `search/category/<keyword_or_keywords_separated_by_comma>` | `s/c/<keyword_or_keywords_separated_by_comma>` |

@@ -1,15 +1,15 @@
 package seedu.duke.command;
 
+import org.junit.jupiter.api.Test;
 import seedu.duke.book.Book;
 import seedu.duke.storage.Storage;
 
 import java.util.ArrayList;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-class BorrowCommandTest {
+class CancelCommandTest {
     ArrayList<Book> bookList = new ArrayList<>();
 
     String s = "Title: Clean Code | Author: Robert C. Martin |" +
