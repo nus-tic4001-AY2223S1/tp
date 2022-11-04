@@ -26,23 +26,24 @@ public class Book {
         this.onShelf = onShelf;
         this.borrower = borrower;
     }
-
     public String getTitle() {
         return title;
     }
-    public String getAuthor() { return author; }
-
-    public String getCategory() { return category; }
-
+    public String getAuthor() {
+        return author;
+    }
+    public String getCategory() {
+        return category;
+    }
     public boolean isOnShelf() {
         return onShelf;
     }
-
     public void setOnShelf(boolean onShelf) {
         this.onShelf = onShelf;
     }
-
-    public ArrayList<String> getBorrower() { return borrower; }
+    public ArrayList<String> getBorrower() {
+        return borrower;
+    }
 
     @Override
     public String toString() {

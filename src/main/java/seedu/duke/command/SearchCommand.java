@@ -93,7 +93,7 @@ public class SearchCommand extends Command {
     public void hasMatchingTitle (ArrayList<Book> bookList, String keyword, ArrayList<Book> relatedBooks) {
         for (int i = 0; i < bookList.size(); i++) {
             if (bookList.get(i).getTitle().toLowerCase().contains(keyword.toLowerCase()) &&
-            !relatedBooks.contains(bookList.get(i))) {
+                    !relatedBooks.contains(bookList.get(i))) {
                 relatedBooks.add(bookList.get(i));
             }
         }
