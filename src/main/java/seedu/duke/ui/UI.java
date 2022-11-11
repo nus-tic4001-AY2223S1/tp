@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class UI {
     public String enterUsername() {
-        System.out.println("\nEnter your one word username (case sensitive!!!) to begin: \n");
+        System.out.println("\nEnter your username (1 word, case sensitive!) to begin: \n");
         Scanner in = new Scanner(System.in);
         String username = in.nextLine().trim();
 
