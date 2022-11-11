@@ -6,7 +6,7 @@
 
 The app is optimized, i.e. shortcut keys are provided, to support efficient typing experience of end-users.
 
-Librarian allows the users to: <code>list</code> <code>search</code> <code>borrow</code> <code>return</code> <code>reserve</code>
+Librarian allows the users to: <code>list</code> <code>search</code> <code>borrow</code> <code>return</code> <code>reserve</code> <code>cancel</code>
 
 ## Quick Start
 
@@ -87,7 +87,7 @@ example: `reserve/clean code`
 <br />
 <br />
 
-#### CANCELING BOOK FOR RESERVATION 
+#### CANCELING A RESERVED BOOK
 
 syntax: `cancel/<book_title>`
 
