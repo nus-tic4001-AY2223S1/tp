@@ -8,7 +8,7 @@ All the code base is developed internally by the DEV team and any libraries used
 
 ### Architecture
 
-![](C:\Users\Roshan\Desktop\1.png)
+![](team/Architecture%20Diagram.jpeg)
 
 The **Architecture Diagram** given above explains the high-level design of the program.
 
@@ -32,14 +32,14 @@ Given below is a quick overview of the main components and how they interact wit
 The *Sequence Diagram* below shows how the components interact with each other for the scenario when user has already keyed in
 his username and then issues the command `list/library`
 
-<img src="C:\Users\Roshan\Desktop\Sequence Diagram (1).jpeg"/>
+![](team/Sequence%20Diagram.jpeg)
 
 ### Storage Component
 
 The **Storage Component** displays the types of storage classes within it. The UI / Parser classes load / add various information using
 different components within the Storage Class.
 
-![](C:\Users\Roshan\Desktop\Storage.png)
+![](team/Storage%20Component.jpeg)
 
 ## User Stories
 
